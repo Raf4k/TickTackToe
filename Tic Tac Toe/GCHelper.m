@@ -73,104 +73,32 @@ static GCHelper *sharedHelper = nil;
     }
 }
 
--(void)findMatchWithMinPlayers:(int)minPlayers maxPlayers:(int)maxPlayers viewController:(UIViewController *)viewController delegate:(id<GCHelperDelegate>)theDelegate{
-    
-    if (!self.gameCenterAvailable) return;
-    
-    self.match = nil;
-    self.presentingViewController = viewController;
-    self.delegate = theDelegate;
-    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-    
-    GKMatchRequest *request = [[GKMatchRequest alloc] init];
-    request.minPlayers = minPlayers;
-    request.maxPlayers = maxPlayers;
-    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
-    mmvc.matchmakerDelegate = self;
-    
-    [self.presentingViewController presentViewController:mmvc animated:YES completion:nil];
-    
-}
-
-#pragma mark GKMatchmakerViewControllerDelegate
-
-//The user has cancelled matchmaking
-
--(void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController{
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-//Matchmaking has failed with an error
-
--(void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error{
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"Error finding match: %@", error.localizedDescription);
-}
-
-//A peer to peer match has been found, the game should start
-
--(void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match{
-    
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    self.match = match;
-    self.match.delegate = self;
-    
-    if (!self.matchStarted && self.match.expectedPlayerCount == 0) {
-        NSLog(@"Ready to start match");
-    }
-}
-
-- (void)match:(GKMatch *)match didReceiveData:(NSData *)data
-   fromPlayer:(NSString *)playerID{
-    
-    if (self.match !=match) return;
-    [self.delegate match:match didReceiveData:data fromPlayer:playerID];
-}
-
--(void)match:(GKMatch *)match player:(GKPlayer *)player didChangeConnectionState:(GKPlayerConnectionState)state{
-    
-    if (self.match !=match) return;
-    
-    switch (state) {
-        case GKPlayerStateConnected:
-            //handle a new player connection
-            NSLog(@"Player connected!");
-            
-            if (!self.matchStarted && match.expectedPlayerCount == 0) {
-                NSLog(@"Ready to start match !");
-            }
-            break;
-        case GKPlayerStateDisconnected:
-            // a player just disconnected
-            NSLog(@"Player disconnected!");
-            self.matchStarted = NO;
-            [self.delegate matchEnded];
-            break;
-        default:
-            break;
-    }
-}
-
-//The match was unable to be established with any players due to an error;
-
--(void)match:(GKMatch *)match connectionWithPlayerFailed:(NSString *)playerID withError:(NSError *)error{
-    if (self.match != match) return;
-    
-    NSLog(@"Failed to connect to player with error :%@", error.localizedDescription);
-    self.matchStarted = NO;
-    [self.delegate matchEnded];
-}
 
 
--(void)match:(GKMatch *)match didFailWithError:(NSError *)error{
-    if (self.match == match) return;
-    
-    NSLog(@"Match failed with error :%@", error.localizedDescription);
-    self.matchStarted = NO;
-  [self.delegate matchEnded];
-}
 
 
+//- (void)findMatchWithMinPlayers:(int)minPlayers maxPlayers:(int)maxPlayers
+//                 viewController:(UIViewController *)viewController
+//                       delegate:(id<GCHelperDelegate>)theDelegate {
+//    
+//    if (!self.gameCenterAvailable) return;
+//    
+//    self.matchStarted = NO;
+//    self.match = nil;
+//    self.presentingViewController = viewController;
+//    self.delegate = theDelegate;
+//    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+//    
+//    GKMatchRequest *request = [[GKMatchRequest alloc] init];
+//    request.minPlayers = minPlayers;
+//    request.maxPlayers = maxPlayers;
+//    
+//    GKMatchmakerViewController *mmvc =
+//    [[GKMatchmakerViewController alloc] initWithMatchRequest:request];
+//    mmvc.matchmakerDelegate = self;
+//    
+//    [self.presentingViewController presentViewController:mmvc animated:YES completion:nil];
+//}
 
 
 

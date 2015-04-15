@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A70163A91ADE546400B852B5 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A70163A81ADE546400B852B5 /* GCHelper.m */; };
+		A70163B81ADE8E5B00B852B5 /* MultiplayerGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A70163B71ADE8E5B00B852B5 /* MultiplayerGameViewController.m */; };
 		A73BE33E1ADBC33B006539AC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73BE33D1ADBC33B006539AC /* GameKit.framework */; };
 		A74721931AD65C080042C731 /* InstructionsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A74721921AD65C080042C731 /* InstructionsCollectionViewCell.m */; };
 		A762B3361AD5679900E0FA5C /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A762B3351AD5679900E0FA5C /* InstructionsViewController.m */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		A70163A71ADE546400B852B5 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		A70163A81ADE546400B852B5 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
+		A70163B61ADE8E5B00B852B5 /* MultiplayerGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerGameViewController.h; sourceTree = "<group>"; };
+		A70163B71ADE8E5B00B852B5 /* MultiplayerGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerGameViewController.m; sourceTree = "<group>"; };
 		A73BE33D1ADBC33B006539AC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		A74721911AD65C080042C731 /* InstructionsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsCollectionViewCell.h; sourceTree = "<group>"; };
 		A74721921AD65C080042C731 /* InstructionsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsCollectionViewCell.m; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 				A76F06851AD66A9600C32FA4 /* smallXO */,
 				A78A54061AD3E79A00E0C140 /* ViewController.h */,
 				A78A54071AD3E79A00E0C140 /* ViewController.m */,
+				A70163B61ADE8E5B00B852B5 /* MultiplayerGameViewController.h */,
+				A70163B71ADE8E5B00B852B5 /* MultiplayerGameViewController.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A70163A91ADE546400B852B5 /* GCHelper.m in Sources */,
+				A70163B81ADE8E5B00B852B5 /* MultiplayerGameViewController.m in Sources */,
 				A78A54081AD3E79A00E0C140 /* ViewController.m in Sources */,
 				A78A54281AD3F74000E0C140 /* SmallXOVIewController.m in Sources */,
 				A77B9BC51ADBD87D0091E29D /* Defines.m in Sources */,

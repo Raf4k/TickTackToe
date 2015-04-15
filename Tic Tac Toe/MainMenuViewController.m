@@ -9,6 +9,8 @@
 #import "MainMenuViewController.h"
 #import "ViewController.h"
 #import <GameKit/GameKit.h>
+#import "MultiplayerGameViewController.h"
+
 
 
 
@@ -27,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
    self.leaderboardIdentifier = @"wins_in_a_row";
     self.enable = NO;
     self.firstPlayerName.hidden = YES;
@@ -110,7 +113,6 @@
         vc.playerOneName = self.firstPlayerName.text;
         vc.playerTwoName = self.secondPlayerName.text;
     }
-    
 }
 
 #pragma mark - Buttons
@@ -136,9 +138,11 @@
 }
 
 - (IBAction)gameCenterTapped:(id)sender {
-//    self.highScore = 40;
+    self.highScore = 40;
 //    [self reportScore];
+    [self findMatch];
 }
+
 - (IBAction)leaderboard:(id)sender {
     [self showLeaderboardAndAchievements];
 }
@@ -162,7 +166,6 @@
     
     gcViewController.gameCenterDelegate = self;
     
-  
         gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
         gcViewController.leaderboardIdentifier = self.leaderboardIdentifier;
    
@@ -198,7 +201,46 @@
     [self.secondPlayerName resignFirstResponder];
 }
 
+//game center
 
+
+-(void)findMatch {
+    NSLog(@"Searching a match ...");
+    GKMatchRequest *matchRequest = [[GKMatchRequest alloc] init];
+    matchRequest.maxPlayers = 2;
+    matchRequest.minPlayers = 2;
+    GKMatchmakerViewController *mmvc = [[GKMatchmakerViewController alloc] initWithMatchRequest:matchRequest];
+    mmvc.matchmakerDelegate = self;
+    [self presentViewController:mmvc animated:YES completion:nil];
+}
+
+
+// The user has cancelled matchmaking
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Matchmaking has failed with an error
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Error finding match: %@", error.localizedDescription);
+}
+
+// A peer-to-peer match has been found, the game should start
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)theMatch {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+    NSLog(@"find match!");
+}
+
+-(void)matchStarted{
+    NSLog(@"Match did started!");
+}
+
+-(void)matchEnded{
+    NSLog(@"match did ended!");
+}
 
 
 

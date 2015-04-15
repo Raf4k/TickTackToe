@@ -1,24 +1,16 @@
 //
-//  ViewController.h
+//  MultiplayerGameViewController.h
 //  Tic Tac Toe
 //
-//  Created by Rafał Kampa on 07.04.2015.
+//  Created by Rafał Kampa on 15.04.2015.
 //  Copyright (c) 2015 Rafał Kampa. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "SmallXOVIewController.h"
-#import "MainMenuViewController.h"
-#import "GCHelper.h"
 
-
-@interface ViewController : UIViewController 
-
+@interface MultiplayerGameViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *winnerImage;
 @property (nonatomic, strong) NSString *playerOneName;
 @property (nonatomic, strong) NSString *playerTwoName;
 @property (weak, nonatomic) IBOutlet UIView *winnerContainer;
-
-
 @end
-

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
+#import "MultiplayerGameViewController.h"
+#import "GCHelper.h"
 
-@interface MainMenuViewController : UIViewController
-
+@interface MainMenuViewController : UIViewController <GCHelperDelegate>
 @property BOOL gameCenterAvaliable;
 @property double highScore;
 @property (nonatomic, strong) NSString *leaderboardIdentifier;
-
+@property (nonatomic, strong) UIViewController *viewController;
+@property (nonatomic, strong) MultiplayerGameViewController *multiplayerGame;
 @end
