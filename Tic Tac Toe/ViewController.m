@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SmallXOVIewController.h"
 
+
 @interface ViewController () <SmallXODelegate>
 @property (weak, nonatomic) IBOutlet UIView *topLeftContainer;
 @property (weak, nonatomic) IBOutlet UIView *topCenterContainer;
@@ -196,7 +197,7 @@
     [selectedSmallXO checkWinner];
      [self checkWinner];
     if (selectedSmallXO.winner != eWinnerNone) {
-        NSLog(@"%d",selectedSmallXO.winner);
+        NSLog(@"%ld",(long)selectedSmallXO.winner);
         
         for (SmallXOVIewController *small in self.array) {
             [small checkWinner];

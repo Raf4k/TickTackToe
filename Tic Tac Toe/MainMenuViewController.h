@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
 @interface MainMenuViewController : UIViewController
+
+@property BOOL gameCenterAvaliable;
+@property double highScore;
+@property (nonatomic, strong) NSString *leaderboardIdentifier;
 
 @end

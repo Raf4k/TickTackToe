@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SmallXOVIewController.h"
 #import "MainMenuViewController.h"
+#import "GCHelper.h"
 
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController <GCHelperDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *winnerImage;
 @property (nonatomic, strong) NSString *playerOneName;

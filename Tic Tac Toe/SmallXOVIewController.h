@@ -58,5 +58,4 @@ typedef NS_ENUM(NSInteger, eWinner) {
 - (IBAction)topLeftTapped:(id)sender;
 -(void)checkWinner;
 
--(void)clear;
 @end
